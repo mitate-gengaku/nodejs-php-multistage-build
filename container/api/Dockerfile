@@ -18,4 +18,10 @@ RUN docker-php-ext-install bcmath
 RUN docker-php-ext-install pdo_mysql mysqli exif
 RUN cd /usr/bin && curl -s http://getcomposer.org/installer | php && ln -s /usr/bin/composer.phar /usr/bin/composer
 
+# 非ルートユーザーに切り替え
+RUN useradd -ms /bin/bash php && \
+    echo "php:php" | chpasswd
+
+USER php
+
 WORKDIR /home/php/api

@@ -3,7 +3,6 @@ services:
     container_name: multistage-app
     build: 
       context: .
-      target: production
       dockerfile: ./container/app/Dockerfile
     ports:
       - 3000:3000

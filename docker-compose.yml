@@ -15,6 +15,8 @@ services:
     build: 
       context: .
       dockerfile: ./container/api/Dockerfile
+    volumes:
+      - ./api:/home/php/api
   web:
     container_name: multistage-web
     build: 

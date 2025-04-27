@@ -1,0 +1,38 @@
+services:
+  app:
+    container_name: multistage-app
+    build: 
+      context: .
+      dockerfile: ./container/app/Dockerfile
+    ports:
+      - 3000:3000
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./app:/home/node/app
+  api:
+    container_name: multistage-api
+    build: 
+      context: .
+      dockerfile: ./container/api/Dockerfile
+  web:
+    container_name: multistage-web
+    build: 
+      context: .
+      dockerfile: ./container/web/Dockerfile
+    ports:
+      - 80:80
+  db:
+    container_name: multistage-db
+    build: 
+      context: .
+      dockerfile: ./container/db/Dockerfile
+    ports: 
+      - 3306:3306
+  cache:
+    container_name: multistage-cache
+    build: 
+      context: .
+      dockerfile: ./container/cache/Dockerfile
+    ports: 
+      - 6379:6379

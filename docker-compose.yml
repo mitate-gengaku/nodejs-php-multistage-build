@@ -15,6 +15,7 @@ services:
     container_name: multistage-api
     build: 
       context: .
+      target: production
       dockerfile: ./container/api/Dockerfile
     volumes:
       - ./api:/home/php/api
@@ -24,7 +25,10 @@ services:
       context: .
       dockerfile: ./container/web/Dockerfile
     ports:
-      - 80:80
+      - 8080:8080
+    depends_on:
+      - api
+      - db
   db:
     container_name: multistage-db
     build: 
